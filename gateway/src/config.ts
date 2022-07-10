@@ -2,23 +2,6 @@ import { registerAs } from '@nestjs/config';
 
 export default registerAs('config', () => {
   return {
-    mongo: {
-      dbName: process.env.MONGO_DB,
-      user: process.env.MONGO_INITDB_ROOT_USERNAME,
-      password: process.env.MONGO_INITDB_ROOT_PASSWORD,
-      host: process.env.MONGO_HOST,
-      connection: process.env.MONGO_CONNECTION,
-    },
-    dnaSequences: {
-      numberOfRepeatedCharacters: parseInt(
-        process.env.NUMBER_OF_REPEATED_CHARACTERS,
-        10,
-      ),
-      numberOfRepeatedSequences: parseInt(
-        process.env.NUMBER_OF_REPEATED_SEQUENCES,
-        10,
-      ),
-    },
     redis: {
       connection: process.env.REDIS_CONNECTION,
       port: parseInt(process.env.REDIS_PORT, 10),

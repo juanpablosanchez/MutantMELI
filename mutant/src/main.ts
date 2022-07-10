@@ -1,9 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import {
-  MicroserviceOptions,
-  RedisOptions,
-  Transport,
-} from '@nestjs/microservices';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -20,11 +16,10 @@ async function bootstrap() {
     {
       transport: Transport.REDIS,
       options: {
-        url: `redis://${connection}`,
-        port,
+        url: `redis://${connection}:${port}`,
         password,
       },
-    } as RedisOptions,
+    },
   );
   await app.listen();
   console.info('Services started');

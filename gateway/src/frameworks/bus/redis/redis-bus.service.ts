@@ -1,9 +1,9 @@
 import { Inject, Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { IBusServices } from 'src/core/abstracts/bus.abstract';
+import { IBusService } from 'src/core/abstracts/bus.abstract';
 
 @Injectable()
-export class RedisBusServices implements IBusServices, OnApplicationBootstrap {
+export class RedisBusServices implements IBusService, OnApplicationBootstrap {
   client: ClientProxy;
 
   constructor(@Inject('REDISBUS') private readonly clientProxy: ClientProxy) {}

@@ -2,7 +2,6 @@ import { classes } from '@automapper/classes';
 import { AutomapperModule } from '@automapper/nestjs';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AutomapperSetupProfile } from './automapper.profile';
 import config from './config';
 import { MutantController, StatsController } from './controllers';

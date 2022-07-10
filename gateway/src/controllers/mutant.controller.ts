@@ -4,7 +4,7 @@ import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { lastValueFrom } from 'rxjs';
-import { IBusServices } from 'src/core/abstracts/bus.abstract';
+import { IBusService } from 'src/core/abstracts/bus.abstract';
 import { DnaSequenceDto } from 'src/core/dtos';
 import { Dna } from 'src/core/entities';
 
@@ -13,7 +13,7 @@ import { Dna } from 'src/core/entities';
 export class MutantController {
   constructor(
     @InjectMapper() private readonly mapper: Mapper,
-    private readonly busServices: IBusServices,
+    private readonly busServices: IBusService,
   ) {}
 
   @Post()

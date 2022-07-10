@@ -3,7 +3,6 @@ import { ConfigType } from '@nestjs/config';
 import {
   ClientProvider,
   ClientsModule,
-  RedisOptions,
   Transport,
 } from '@nestjs/microservices';
 import config from 'src/config';
@@ -23,11 +22,10 @@ import { RedisBusServices } from './redis-bus.service';
           return {
             transport: Transport.REDIS,
             options: {
-              url: `redis://${connection}`,
-              port,
+              url: `redis://${connection}:${port}`,
               password,
             },
-          } as RedisOptions;
+          };
         },
       },
     ]),

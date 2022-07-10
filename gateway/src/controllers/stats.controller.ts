@@ -3,7 +3,7 @@ import { InjectMapper } from '@automapper/nestjs';
 import { Controller, Get } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { lastValueFrom } from 'rxjs';
-import { IBusServices } from 'src/core/abstracts/bus.abstract';
+import { IBusService } from 'src/core/abstracts/bus.abstract';
 import { StatsResponseDto } from 'src/core/dtos';
 import { Stats } from 'src/core/entities';
 
@@ -12,7 +12,7 @@ import { Stats } from 'src/core/entities';
 export class StatsController {
   constructor(
     @InjectMapper() private readonly mapper: Mapper,
-    private readonly busServices: IBusServices,
+    private readonly busServices: IBusService,
   ) {}
 
   @Get()
