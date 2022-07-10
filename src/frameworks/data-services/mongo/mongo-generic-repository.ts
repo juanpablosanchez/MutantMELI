@@ -13,9 +13,9 @@ export class MongoRepository<T> implements IRepository<T> {
     return this._repository.create(item);
   }
 
-  findDna(dna: string[]): Promise<T> {
+  findDna(dna: string): Promise<T> {
     const filters: FilterQuery<DnaMongo> = {};
-    filters.dnaSequence = { $all: dna };
+    filters.dnaSequence = { $eq: dna };
 
     return this._repository.findOne(filters).exec();
   }

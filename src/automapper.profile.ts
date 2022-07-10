@@ -19,7 +19,7 @@ export class AutomapperSetupProfile extends AutomapperProfile {
         Dna,
         forMember(
           (d) => d.dnaSequence,
-          mapFrom((s) => s.dna),
+          mapFrom((s) => s.dna.toString()),
         ),
       );
 

@@ -5,7 +5,7 @@ export type DnaDocument = DnaMongo & Document;
 @Schema()
 export class DnaMongo {
   @Prop()
-  dnaSequence: string[];
+  dnaSequence: string;
 
   @Prop()
   isMutant: boolean;
