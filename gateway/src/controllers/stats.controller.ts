@@ -23,7 +23,7 @@ export class StatsController {
   async getStats(): Promise<StatsResponseDto> {
     const statsObv$ = this.busServices.client.send<Stats>(
       { cmd: 'get_stats' },
-      null,
+      {},
     );
     const statsResponse = await lastValueFrom(statsObv$);
     return this.mapper.map(statsResponse, Stats, StatsResponseDto);

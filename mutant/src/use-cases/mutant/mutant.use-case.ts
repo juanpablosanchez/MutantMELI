@@ -8,7 +8,7 @@ import { MatrixService } from 'src/services/matrix/matrix.service';
 
 @Injectable()
 export class MutantUseCases {
-  private data: Dna[];
+  private data: Dna[] = [];
 
   constructor(
     @Inject(config.KEY)

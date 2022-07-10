@@ -9,7 +9,7 @@ export class StatsUseCases {
 
   async get(): Promise<Stats> {
     const dnaList = await firstValueFrom(
-      this.busService.client.send<Dna[]>({ cmd: 'storage_get_all' }, null),
+      this.busService.client.send<Dna[]>({ cmd: 'storage_get_all' }, {}),
     );
 
     const mutantQuantity = dnaList.filter((dna) => dna.isMutant).length;

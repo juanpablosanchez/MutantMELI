@@ -26,11 +26,12 @@ export class MutantController {
   ): Promise<void> {
     const requestMapped = this.mapper.map(dnaDto, DnaSequenceDto, Dna);
 
-    const isMutantObv$ = this.busServices.client.send<boolean, Dna>(
-      { cmd: 'get_is_mutant' },
-      requestMapped,
+    const isMutantResponse = await lastValueFrom(
+      this.busServices.client.send<boolean, Dna>(
+        { cmd: 'get_is_mutant' },
+        requestMapped,
+      ),
     );
-    const isMutantResponse = await lastValueFrom(isMutantObv$);
 
     if (isMutantResponse) {
       res.status(HttpStatus.OK).send();
