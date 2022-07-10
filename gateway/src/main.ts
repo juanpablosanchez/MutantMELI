@@ -15,5 +15,6 @@ async function bootstrap() {
   SwaggerModule.setup('swagger', app, document);
 
   await app.listen(port);
+  console.info('App is running on port ' + port);
 }
 bootstrap();

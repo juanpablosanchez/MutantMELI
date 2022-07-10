@@ -19,5 +19,10 @@ export default registerAs('config', () => {
         10,
       ),
     },
+    redis: {
+      connection: process.env.REDIS_CONNECTION,
+      port: parseInt(process.env.REDIS_PORT, 10),
+      password: process.env.REDIS_PASSWORD,
+    },
   };
 });
