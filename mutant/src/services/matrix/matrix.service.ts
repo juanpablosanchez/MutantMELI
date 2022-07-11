@@ -49,16 +49,6 @@ export class MatrixService {
     );
     const regexValidator = new RegExp(`(.)\\1{${repeatedCharacters - 1}}`, 'g');
 
-    // let matches = 0;
-    // for (let i = 0; i < listFiltered.length; i++) {
-    //   const validateRegex = listFiltered[i].match(regexValidator);
-    //   const characterRepeated = validateRegex ? validateRegex.length : 0;
-    //   matches += characterRepeated;
-
-    //   if (matches > repeatedSequences) {
-    //     break;
-    //   }
-    // }
     const validateRegex = listFiltered.toString().match(regexValidator);
     const matches = validateRegex ? validateRegex.length : 0;
 

@@ -3,10 +3,11 @@ import { IBusService } from '../core/abstracts/bus.abstract';
 import { of } from 'rxjs';
 import { Response } from 'express';
 import { resParamMock, clientProxyMock } from '../../../__tests__/__mocks__';
-import { Test } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../app.module';
 
 describe('MutantController', () => {
+  let moduleRef: TestingModule;
   let mutantController: MutantController;
   let resParam: Response;
   let busServices: IBusService;
@@ -15,7 +16,7 @@ describe('MutantController', () => {
     resParam = resParamMock();
     busServices = clientProxyMock();
 
-    const moduleRef = await Test.createTestingModule({
+    moduleRef = await Test.createTestingModule({
       imports: [AppModule],
     })
       .overrideProvider(IBusService)
@@ -53,5 +54,9 @@ describe('MutantController', () => {
         { dnaSequence: 'ABCDE,ABCDE' },
       );
     });
+  });
+
+  afterEach(() => {
+    moduleRef.close();
   });
 });

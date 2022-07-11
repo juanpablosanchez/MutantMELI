@@ -8,22 +8,17 @@ export class StatsUseCases {
   constructor(private readonly busService: IBusService) {}
 
   async get(): Promise<Stats> {
-    console.info('StatsUseCases => get');
     const dnaList = await firstValueFrom(
       this.busService.client.send<Dna[]>({ cmd: 'storage_get_all' }, {}),
     );
-    console.info('storage_get_all');
 
     const mutantQuantity = dnaList.filter((dna) => dna.isMutant).length;
     const humanQuantity = dnaList.length - mutantQuantity;
-    console.info('filters');
 
-    const response: Stats = {
-      mutantQuantity,
-      humanQuantity,
-      ratio: mutantQuantity / humanQuantity,
-    };
-    console.info('response');
+    const response = new Stats();
+    response.mutantQuantity = mutantQuantity;
+    response.humanQuantity = humanQuantity;
+    response.ratio = mutantQuantity / humanQuantity;
 
     return response;
   }

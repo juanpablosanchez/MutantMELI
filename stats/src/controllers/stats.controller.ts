@@ -8,7 +8,7 @@ export class StatsController {
   constructor(private readonly statsUseCases: StatsUseCases) {}
 
   @MessagePattern({ cmd: 'get_stats' })
-  async getIsMutant(): Promise<Stats> {
+  async getStats(): Promise<Stats> {
     return this.statsUseCases.get();
   }
 }

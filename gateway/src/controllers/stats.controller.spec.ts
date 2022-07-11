@@ -3,17 +3,18 @@ import { IBusService } from '../core/abstracts/bus.abstract';
 import { clientProxyMock } from '../../../__tests__/__mocks__';
 import { Stats } from '../core/entities';
 import { of } from 'rxjs';
-import { Test } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../app.module';
 
 describe('StatsController', () => {
+  let moduleRef: TestingModule;
   let statsController: StatsController;
   let busServices: IBusService;
 
   beforeEach(async () => {
     busServices = clientProxyMock();
 
-    const moduleRef = await Test.createTestingModule({
+    moduleRef = await Test.createTestingModule({
       imports: [AppModule],
     })
       .overrideProvider(IBusService)
@@ -39,5 +40,9 @@ describe('StatsController', () => {
       expect(response.count_mutant_dna).toBe(20);
       expect(response.ratio).toBe(0.5);
     });
+  });
+
+  afterEach(() => {
+    moduleRef.close();
   });
 });
