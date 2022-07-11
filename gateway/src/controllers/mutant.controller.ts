@@ -5,6 +5,7 @@ import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { lastValueFrom } from 'rxjs';
 import { IBusService } from '../core/abstracts/bus.abstract';
+import { BusCommandEnum } from '../core/commands/command.enum';
 import { DnaSequenceDto } from '../core/dtos';
 import { Dna } from '../core/entities';
 
@@ -28,7 +29,7 @@ export class MutantController {
 
     const isMutantResponse = await lastValueFrom(
       this.busServices.client.send<boolean, Dna>(
-        { cmd: 'get_is_mutant' },
+        { cmd: BusCommandEnum.GET_IS_MUTANT },
         requestMapped,
       ),
     );

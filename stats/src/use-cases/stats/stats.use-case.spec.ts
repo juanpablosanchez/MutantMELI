@@ -5,6 +5,7 @@ import { IBusService } from '../../core/abstracts/bus.abstract';
 import { clientProxyMock } from '../../../../__tests__/__mocks__';
 import { of } from 'rxjs';
 import { Dna } from '../../core/entities';
+import { BusCommandEnum } from '../../core/commands/command.enum';
 
 describe('StatsUseCases', () => {
   let moduleRef: TestingModule;
@@ -45,7 +46,7 @@ describe('StatsUseCases', () => {
       expect(response.mutantQuantity).toBe(40);
       expect(response.ratio).toBe(0.4);
       expect(busService.client.send).toHaveBeenCalledWith(
-        { cmd: 'storage_get_all' },
+        { cmd: BusCommandEnum.STORAGE_GET_ALL },
         {},
       );
     });
@@ -70,7 +71,7 @@ describe('StatsUseCases', () => {
       expect(response.mutantQuantity).toBe(500);
       expect(response.ratio).toBe(2);
       expect(busService.client.send).toHaveBeenCalledWith(
-        { cmd: 'storage_get_all' },
+        { cmd: BusCommandEnum.STORAGE_GET_ALL },
         {},
       );
     });

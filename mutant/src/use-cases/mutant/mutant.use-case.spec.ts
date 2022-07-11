@@ -3,6 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../../app.module';
 import { MatrixService } from '../../services/matrix/matrix.service';
 import { IBusService } from '../../core/abstracts/bus.abstract';
+import { BusCommandEnum } from '../../core/commands/command.enum';
 import { clientProxyMock } from '../../../../__tests__/__mocks__';
 import { of } from 'rxjs';
 
@@ -49,11 +50,11 @@ describe('MutantUseCases', () => {
       expect(matrixService.getCombineSequences).toHaveBeenCalledTimes(1);
       expect(matrixService.validateRepeatedCharacters).toHaveBeenCalledTimes(1);
       expect(busService.client.emit).toHaveBeenCalledWith(
-        { cmd: 'storage_save' },
+        { cmd: BusCommandEnum.STORAGE_SAVE },
         { dnaSequence: 'ABCDE,ABCDE', isMutant: true },
       );
       expect(busService.client.send).toHaveBeenCalledWith(
-        { cmd: 'storage_find_dna' },
+        { cmd: BusCommandEnum.STORAGE_FIND_DNA },
         'ABCDE,ABCDE',
       );
     });
@@ -80,7 +81,7 @@ describe('MutantUseCases', () => {
       expect(matrixService.validateRepeatedCharacters).not.toHaveBeenCalled();
       expect(busService.client.emit).not.toHaveBeenCalled();
       expect(busService.client.send).toHaveBeenCalledWith(
-        { cmd: 'storage_find_dna' },
+        { cmd: BusCommandEnum.STORAGE_FIND_DNA },
         'ABCDE,ABCDE',
       );
     });
@@ -112,7 +113,7 @@ describe('MutantUseCases', () => {
       expect(busService.client.emit).not.toHaveBeenCalled();
       expect(busService.client.send).toHaveBeenCalledTimes(1);
       expect(busService.client.send).toHaveBeenCalledWith(
-        { cmd: 'storage_find_dna' },
+        { cmd: BusCommandEnum.STORAGE_FIND_DNA },
         'ABCDE,ABCDE',
       );
     });

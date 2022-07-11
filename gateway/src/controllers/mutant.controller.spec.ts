@@ -1,5 +1,6 @@
 import { MutantController } from './';
 import { IBusService } from '../core/abstracts/bus.abstract';
+import { BusCommandEnum } from '../core/commands/command.enum';
 import { of } from 'rxjs';
 import { Response } from 'express';
 import { resParamMock, clientProxyMock } from '../../../__tests__/__mocks__';
@@ -35,7 +36,7 @@ describe('MutantController', () => {
 
       expect(resParam.status).toHaveBeenCalledWith(200);
       expect(busServices.client.send).toHaveBeenCalledWith(
-        { cmd: 'get_is_mutant' },
+        { cmd: BusCommandEnum.GET_IS_MUTANT },
         { dnaSequence: 'ABCDE,ABCDE' },
       );
     });
@@ -50,7 +51,7 @@ describe('MutantController', () => {
 
       expect(resParam.status).toHaveBeenCalledWith(403);
       expect(busServices.client.send).toHaveBeenCalledWith(
-        { cmd: 'get_is_mutant' },
+        { cmd: BusCommandEnum.GET_IS_MUTANT },
         { dnaSequence: 'ABCDE,ABCDE' },
       );
     });
