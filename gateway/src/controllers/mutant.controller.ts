@@ -4,9 +4,9 @@ import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { lastValueFrom } from 'rxjs';
-import { IBusService } from 'src/core/abstracts/bus.abstract';
-import { DnaSequenceDto } from 'src/core/dtos';
-import { Dna } from 'src/core/entities';
+import { IBusService } from '../core/abstracts/bus.abstract';
+import { DnaSequenceDto } from '../core/dtos';
+import { Dna } from '../core/entities';
 
 @ApiTags('Mutant')
 @Controller('mutant')

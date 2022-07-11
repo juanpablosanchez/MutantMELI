@@ -1,7 +1,7 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { IDataServices } from 'src/core/abstracts';
+import { IDataServices } from '../../../core/abstracts';
 import { DnaDocument, DnaMongo } from './model';
 import { MongoRepository } from './mongo-generic-repository';
 

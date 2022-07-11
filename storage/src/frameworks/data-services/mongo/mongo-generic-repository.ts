@@ -1,5 +1,5 @@
 import { FilterQuery, Model } from 'mongoose';
-import { IRepository } from 'src/core/abstracts';
+import { IRepository } from '../../../core/abstracts';
 import { DnaMongo } from './model';
 
 export class MongoRepository<T> implements IRepository<T> {

@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { EventPattern, MessagePattern } from '@nestjs/microservices';
-import { IDataServices } from 'src/core/abstracts';
-import { Dna } from 'src/core/entities';
+import { IDataServices } from '../core/abstracts';
+import { Dna } from '../core/entities';
 
 @Controller()
 export class StorageController {

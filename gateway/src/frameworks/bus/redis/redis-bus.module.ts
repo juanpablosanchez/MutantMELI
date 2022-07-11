@@ -5,8 +5,8 @@ import {
   ClientsModule,
   Transport,
 } from '@nestjs/microservices';
-import config from 'src/config';
-import { IBusService } from 'src/core/abstracts/bus.abstract';
+import config from '../../../config';
+import { IBusService } from '../../../core/abstracts/bus.abstract';
 import { RedisBusServices } from './redis-bus.service';
 
 @Module({

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { BusServicesModule } from 'src/services/bus/bus.service';
+import { BusServicesModule } from '../../services/bus/bus.service';
 import { StatsUseCases } from './stats.use-case';
 
 @Module({

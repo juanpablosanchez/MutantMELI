@@ -3,9 +3,9 @@ import { InjectMapper } from '@automapper/nestjs';
 import { Controller, Get } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { lastValueFrom } from 'rxjs';
-import { IBusService } from 'src/core/abstracts/bus.abstract';
-import { StatsResponseDto } from 'src/core/dtos';
-import { Stats } from 'src/core/entities';
+import { IBusService } from '../core/abstracts/bus.abstract';
+import { StatsResponseDto } from '../core/dtos';
+import { Stats } from '../core/entities';
 
 @ApiTags('Stats')
 @Controller('stats')

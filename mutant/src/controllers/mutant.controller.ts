@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
-import { Dna } from 'src/core/entities';
-import { MutantUseCases } from 'src/use-cases';
+import { Dna } from '../core/entities';
+import { MutantUseCases } from '../use-cases';
 
 @Controller()
 export class MutantController {

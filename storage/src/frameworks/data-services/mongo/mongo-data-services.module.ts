@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import config from 'src/config';
-import { IDataServices } from 'src/core/abstracts';
+import config from '../../../config';
+import { IDataServices } from '../../../core/abstracts';
 import { DnaMongo, DnaSchema } from './model';
 import { MongoDataServices } from './mongo-data-services.service';
 

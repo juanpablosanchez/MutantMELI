@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
-import config from 'src/config';
-import { IBusService } from 'src/core/abstracts/bus.abstract';
-import { Dna } from 'src/core/entities';
-import { MatrixService } from 'src/services/matrix/matrix.service';
+import config from '../../config';
+import { IBusService } from '../../core/abstracts/bus.abstract';
+import { Dna } from '../../core/entities';
+import { MatrixService } from '../../services/matrix/matrix.service';
 
 @Injectable()
 export class MutantUseCases {
