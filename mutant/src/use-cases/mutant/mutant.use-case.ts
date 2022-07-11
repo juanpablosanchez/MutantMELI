@@ -5,6 +5,7 @@ import config from '../../config';
 import { IBusService } from '../../core/abstracts/bus.abstract';
 import { Dna } from '../../core/entities';
 import { MatrixService } from '../../services/matrix/matrix.service';
+import { BusCommandEnum } from '../../core/commands/command.enum';
 
 @Injectable()
 /* MutantUseCases class dónde se hace la lógica para analizar el ADN*/
@@ -36,7 +37,7 @@ export class MutantUseCases {
 
     this.data.push(dnaRegister);
     this.busServices.client.emit<void, Dna>(
-      { cmd: 'storage_save' },
+      { cmd: BusCommandEnum.STORAGE_SAVE },
       dnaRegister,
     );
 
@@ -76,7 +77,7 @@ export class MutantUseCases {
 
     const dnaFounded = await firstValueFrom(
       this.busServices.client.send<Dna | null, string>(
-        { cmd: 'storage_find_dna' },
+        { cmd: BusCommandEnum.STORAGE_FIND_DNA },
         dna.dnaSequence,
       ),
     );

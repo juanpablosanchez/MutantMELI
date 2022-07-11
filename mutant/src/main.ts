@@ -9,8 +9,6 @@ async function bootstrap() {
     parseInt(process.env.REDIS_PORT, 10),
   ];
 
-  console.log({ connection, password, port });
-
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     AppModule,
     {

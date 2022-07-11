@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
 import { IBusService } from '../../core/abstracts/bus.abstract';
 import { Dna, Stats } from '../../core/entities';
+import { BusCommandEnum } from '../../core/commands/command.enum';
 
 @Injectable()
 /* MutantUseCases class dónde se hace la lógica para analizar el ADN*/
@@ -15,16 +16,16 @@ export class StatsUseCases {
    */
   async get(): Promise<Stats> {
     const dnaList = await firstValueFrom(
-      this.busService.client.send<Dna[]>({ cmd: 'storage_get_all' }, {}),
+      this.busService.client.send<Dna[]>(
+        { cmd: BusCommandEnum.STORAGE_GET_ALL },
+        {},
+      ),
     );
 
     const mutantQuantity = dnaList.filter((dna) => dna.isMutant).length;
     const humanQuantity = dnaList.length - mutantQuantity;
 
-    const response = new Stats();
-    response.mutantQuantity = mutantQuantity;
-    response.humanQuantity = humanQuantity;
-    response.ratio = mutantQuantity / humanQuantity;
+    const response = new Stats(mutantQuantity, humanQuantity);
 
     return response;
   }

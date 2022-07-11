@@ -4,6 +4,7 @@ import { Controller, Get } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { lastValueFrom } from 'rxjs';
 import { IBusService } from '../core/abstracts/bus.abstract';
+import { BusCommandEnum } from '../core/commands/command.enum';
 import { StatsResponseDto } from '../core/dtos';
 import { Stats } from '../core/entities';
 
@@ -22,7 +23,7 @@ export class StatsController {
   @ApiResponse({ type: StatsResponseDto })
   async getStats(): Promise<StatsResponseDto> {
     const statsObv$ = this.busServices.client.send<Stats>(
-      { cmd: 'get_stats' },
+      { cmd: BusCommandEnum.GET_STATS },
       {},
     );
     const statsResponse = await lastValueFrom(statsObv$);
