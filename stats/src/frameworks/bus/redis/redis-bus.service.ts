@@ -2,6 +2,7 @@ import { Inject, Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { IBusService } from '../../../core/abstracts/bus.abstract';
 
+/* Implementación de Redis para la interfaz/injección IBusService. */
 @Injectable()
 export class RedisBusServices implements IBusService, OnApplicationBootstrap {
   client: ClientProxy;

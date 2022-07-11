@@ -11,6 +11,10 @@ export class AutomapperSetupProfile extends AutomapperProfile {
     super(mapper);
   }
 
+  /**
+   * Configuración de los mappers
+   * @returns Retorna una función con los diferentes mappers configurados
+   */
   override get profile() {
     return (mapper) => {
       createMap(

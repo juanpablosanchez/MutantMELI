@@ -4,9 +4,15 @@ import { IBusService } from '../../core/abstracts/bus.abstract';
 import { Dna, Stats } from '../../core/entities';
 
 @Injectable()
+/* MutantUseCases class dónde se hace la lógica para analizar el ADN*/
 export class StatsUseCases {
   constructor(private readonly busService: IBusService) {}
 
+  /**
+   * De acuerdo las secuencias de ADN de humanos y mutantes, se calcula
+   * el ratio de mutantes, y se retonar el ratio con la cantidad de humanos y mutantes analizados
+   * @returns A Promise con las estadísticas y ratio analizados.
+   */
   async get(): Promise<Stats> {
     const dnaList = await firstValueFrom(
       this.busService.client.send<Dna[]>({ cmd: 'storage_get_all' }, {}),

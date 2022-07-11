@@ -2,6 +2,11 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class MatrixService {
+  /**
+   * Obtiene una matriz de carácteres y retorna las diferentes combinaciones
+   * como lo son, Horizontal, Verticla, diagonal a la izquierda y disgonal a la derecha
+   * @param {string[]} matrix - string[] - matriz de carácteres
+   */
   getCombineSequences(matrix: string[]): string[] {
     const horizontal = [...matrix];
     const vertical = [];
@@ -39,6 +44,14 @@ export class MatrixService {
     ];
   }
 
+  /**
+   * De acuerdo a una lista de string
+   * determina si hay carácteres que se repiten mas de @param repeatedCharacters
+   * y si estos carácteres repetidos se ocurren mas de @param repeatedSequences
+   * @param {string[]} charactersList - string[] - lista de carácteres a validar
+   * @param {number} repeatedCharacters - number - cantidad sw vwwa que se repite los carácteres
+   * @param {number} repeatedSequences - number - cantidad de veces que se repite las secuencias de carácteres
+   */
   validateRepeatedCharacters(
     charactersList: string[],
     repeatedCharacters: number,

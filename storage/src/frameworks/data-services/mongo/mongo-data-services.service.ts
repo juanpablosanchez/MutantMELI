@@ -5,6 +5,7 @@ import { IDataServices } from '../../../core/abstracts';
 import { DnaDocument, DnaMongo } from './model';
 import { MongoRepository } from './mongo-generic-repository';
 
+/* Implementación de Mongo para la interfaz/injección IDataServices. */
 @Injectable()
 export class MongoDataServices
   implements IDataServices, OnApplicationBootstrap
