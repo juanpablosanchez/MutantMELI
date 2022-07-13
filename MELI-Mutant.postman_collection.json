@@ -1,0 +1,64 @@
+{
+	"info": {
+		"_postman_id": "62466f6f-3d8c-404b-89eb-887586884465",
+		"name": "MELI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5985762"
+	},
+	"item": [
+		{
+			"name": "Mutant",
+			"item": [
+				{
+					"name": "Check mutant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dna\": [\r\n        \"ATGCGA\",\r\n        \"CCGTGC\",\r\n        \"TTATGT\",\r\n        \"AGAAGG\",\r\n        \"CTCCTA\",\r\n        \"TCACTG\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://meli-juan-gateway-api.azurewebsites.net/mutant",
+							"protocol": "https",
+							"host": [
+								"meli-juan-gateway-api",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"mutant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://meli-juan-gateway-api.azurewebsites.net/stats",
+							"protocol": "https",
+							"host": [
+								"meli-juan-gateway-api",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"stats"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

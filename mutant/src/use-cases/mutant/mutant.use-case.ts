@@ -5,17 +5,17 @@ import config from '../../config';
 import { IBusService } from '../../core/abstracts/bus.abstract';
 import { Dna } from '../../core/entities';
 import { MatrixService } from '../../services/matrix/matrix.service';
+import { MemoryService } from '../../services/memory/memory.service';
 import { BusCommandEnum } from '../../core/commands/command.enum';
 
 @Injectable()
 /* MutantUseCases class dónde se hace la lógica para analizar el ADN*/
 export class MutantUseCases {
-  private data: Dna[] = [];
-
   constructor(
     @Inject(config.KEY)
     private readonly configService: ConfigType<typeof config>,
     private readonly matrixService: MatrixService,
+    private readonly memoryService: MemoryService,
     private readonly busServices: IBusService,
   ) {}
 
@@ -26,16 +26,16 @@ export class MutantUseCases {
    * @returns boolean, si es mutante o no.
    */
   async isMutant(dna: Dna): Promise<boolean> {
-    const dnaFounded = await this.getFromStorage(dna);
+    const dnaFounded = await this.getIsMutantFromStorage(dna);
 
-    if (dnaFounded) {
-      return dnaFounded.isMutant;
+    if (typeof dnaFounded === 'boolean') {
+      return dnaFounded;
     }
 
     const isMutant = await this.validateIfIsMutant(dna.dnaSequence);
     const dnaRegister: Dna = { ...dna, isMutant };
 
-    this.data.push(dnaRegister);
+    this.memoryService.addDna(dnaRegister);
     this.busServices.client.emit<void, Dna>(
       { cmd: BusCommandEnum.STORAGE_SAVE },
       dnaRegister,
@@ -64,15 +64,13 @@ export class MutantUseCases {
    * Busca si la secuencia de ADN ya fue analizada con anterioridad
    * busca primero en memoria, sino llama al microservicio de storage para buscarla
    * @param {Dna} dna - ADN - Secuancia de AND a ser validada
-   * @returns Promesa, null si no fue encontrada, modelo <Dna> si fue encontrada.
+   * @returns Promesa, null si no fue encontrada, o boolean si fue encontrada.
    */
-  private async getFromStorage(dna: Dna): Promise<Dna | null> {
-    const dnaFounded1 = this.data.find(
-      (x) => x.dnaSequence === dna.dnaSequence,
-    );
+  private async getIsMutantFromStorage(dna: Dna): Promise<boolean | null> {
+    const dnaFromLocalMemory = this.memoryService.getIsMutant(dna.dnaSequence);
 
-    if (dnaFounded1) {
-      return dnaFounded1;
+    if (typeof dnaFromLocalMemory === 'boolean') {
+      return dnaFromLocalMemory;
     }
 
     const dnaFounded = await firstValueFrom(
@@ -83,8 +81,8 @@ export class MutantUseCases {
     );
 
     if (dnaFounded) {
-      this.data.push(dnaFounded);
-      return dnaFounded;
+      this.memoryService.addDna(dnaFounded);
+      return dnaFounded.isMutant;
     }
 
     return null;

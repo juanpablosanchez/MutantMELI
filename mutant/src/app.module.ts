@@ -4,6 +4,7 @@ import config from './config';
 import { MutantController } from './controllers/mutant.controller';
 import { BusServicesModule } from './services/bus/bus.service';
 import { MatrixServicesModule } from './services/matrix/matrix.module';
+import { MemoryServicesModule } from './services/memory/memory.module';
 import { MutantUseCasesModule } from './use-cases/mutant/mutant.module';
 
 @Module({
@@ -14,6 +15,7 @@ import { MutantUseCasesModule } from './use-cases/mutant/mutant.module';
     }),
     BusServicesModule,
     MatrixServicesModule,
+    MemoryServicesModule,
     MutantUseCasesModule,
   ],
   controllers: [MutantController],

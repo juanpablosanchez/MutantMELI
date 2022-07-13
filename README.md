@@ -98,7 +98,7 @@ Al configurarse el swagger se puede acceder a la siguiente url, en dónde se pue
 
 Tambien se adjunta un postman por si se desea probar por este medio
 
-?????????????????????????????????
+[Archivo de postman](./MELI-Mutant.postman_collection.json) en la raiz del repositorio
 
 ### Base de datos
 
@@ -116,4 +116,4 @@ mongodb+srv://<username>:<password>@cluster0.ara07.mongodb.net/test
 
 Se adjunta un Jmeter configurado para hacer una pequeña prueba de cantidad de peticiones en un segundo
 
-[JMeter en la raiz del repositorio](./Test%20Plan.jmx)
+[Archivo JMeter](./Test%20Plan.jmx) en la raiz del repositorio
