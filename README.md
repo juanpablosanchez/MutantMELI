@@ -30,14 +30,14 @@ En este caso el llamado a la función isMutant(dna) devuelve “true”.
 
 ## Arquitectura de la solución
 
-Para la solución, se hizo una arquitectura de microservicios, en dónde se crearon cuatro proyectos en Nodejs
+Para la solución se implementa una arquitectura orientada a microservicios, además hace uso de patrones de diseño y principios solid con el fin de que sea mantenible y escalable, dicha solución esta compuesta por cuatro proyectos desarrollados en el framework NestJs, estos son:
 
-- El proyecto gateway es un Rest Api, en dónde están los endpoints para consumir /mutant y /stats
-- El proyecto mutant es un microservicio, en dónde se determina si el ADN es muetante o no
-- El proyecto stats es un microservicio, en dónde se obtine un resumen de la información de los ADN validados
-- El proyecto Storage es un microservicio, el cual es el encargado de gestionar la base de datos, tanto el almecenamiento como la recuperación de la información
+- **Proyecto Gateway**: Es un Rest Api, en dónde el cual contiene dos endpoints para consumir /mutant y /stats
+- **Proyecto mutant**: Es un microservicio, que tiene como finalidad determinar si el ADN enviado por el usuario es mutante o no.
+- **Proyecto stats**: Es un microservicio, el cual retorna un reporte con la información de los ADN validados
+- **Proyecto Storage**: Es un microservicio, responsable de la persistencia de la información el cual gestiona la base de datos, tanto el almacenamiento como la recuperación de la información.
 
-Para la comunicación entre los diferntes proyectos se uso redis, y para el almacenamiento de la información se uso mongodb, cómo se muestra en el siguiente gráfico
+Para la comunicación entre los diferentes proyectos se hace uso de Redis también se utiliza la base de datos orientada a documentos MongoDB cómo se muestra en el siguiente gráfico
 
 ![Arquitectura del proyecto](./__sources__/Arquitectura.png)
 
@@ -79,7 +79,7 @@ Este servicio se encarga de:
 
 ## Información detallada de cada proyecto
 
-Para ver la instalación, cómo se corre la aplicación con su configuración y variables de enterno, y las pruebas unitarias, revisar los siguientes links
+Para ver la instalación, ejecucion, configuración, variables de enterno y pruebas unitarias de la aplicacion, revisar los siguientes enlaces
 
 - [API Gateway](gateway/README.md)
 - [Mutant service](mutant/README.md)
@@ -90,15 +90,15 @@ Para ver la instalación, cómo se corre la aplicación con su configuración y 
 
 ### Rest API
 
-Al configurarse el swagger se puede acceder a la siguiente url, en dónde se puede consumir los servicos
+Al configurarse el swagger se puede acceder a la siguiente url, en dónde están expuestos los servicios
 
 [https://meli-juan-gateway-api.azurewebsites.net/swagger](https://meli-juan-gateway-api.azurewebsites.net/swagger)
 
 ![Swagger api](./__sources__/api-swagger.png)
 
-Tambien se adjunta un postman por si se desea probar por este medio
+Tambien se adjunta un postman con el fin de facilitar la ejecución de pruebas
 
-[Archivo de postman](./MELI-Mutant.postman_collection.json) en la raiz del repositorio
+El [Archivo de postman](./MELI-Mutant.postman_collection.json) esta ubicado en la raíz del repositorio
 
 ### Base de datos
 
@@ -114,6 +114,6 @@ mongodb+srv://<username>:<password>@cluster0.ara07.mongodb.net/test
 
 ### Pruebas con JMeter
 
-Se adjunta un Jmeter configurado para hacer una pequeña prueba de cantidad de peticiones en un segundo
+Con el fin de analizar el performance de la aplicación se adjunta un Jmeter configurado el cual permite ejecutar la mayor cantidad de pruebas por un segundo
 
-[Archivo JMeter](./Test%20Plan.jmx) en la raiz del repositorio
+El [Archivo JMeter](./Test%20Plan.jmx) esta ubicado en la raíz del repositorio
